@@ -1,2 +1,6 @@
 # Pycharm
 .idea/*
+
+# first run
+db.sqlite3
+tango_with_django/__pycache__/*
