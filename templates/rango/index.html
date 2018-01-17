@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-
+{% extends 'rango/base.html' %}
 {% load staticfiles %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rango</title>
-</head>
-<body>
+{% block title_block %}
+    Mainpage
+{% endblock %}
+
+{% block body_block %}
     <h1>Rango says...</h1>
     <div>
         hey there partner!</br>
@@ -25,7 +23,6 @@
     {% else %}
         <strong>There are no categories present.</strong>
     {% endif %}
-        <a href="{% url 'rango:add_category' %}">Add a New Category</a></br>
     </div>
     <div>
     {% if pages %}
@@ -40,8 +37,6 @@
     {% endif %}
     </div>
     <div>
-        <a href="{% url 'rango:about' %}">About</a></br>
         <img src="{% static "images/rango.jpg" %}" alt="Picture of Rango">
     </div>
-</body>
-</html>
+{% endblock %}
