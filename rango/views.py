@@ -8,21 +8,23 @@ from .helper import visitor_cookie_handler
 
 
 def index(request):
+    request.session.set_test_cookie()
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
     context_dict = {'categories': category_list, 'pages': page_list}
 
+    visitor_cookie_handler(request)
+    context_dict['visits_cookie'] = request.session['visits_cookie']
+
     response = render(request, 'rango/index.html', context_dict)
-    visitor_cookie_handler(request, response)
 
     return response
 
 
 def about(request):
-    if request.session.test_cookie_worked():
-        print("TEST COOKIE WORKED!")
-        request.session.delete_test_cookie()
-    return render(request, 'rango/about.html')
+    context_dict = {'visits_cookie': request.session.get('visits_cookie', 0)}
+
+    return render(request, 'rango/about.html', context_dict)
 
 
 def show_category(request, category_name_slug):
