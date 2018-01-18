@@ -120,6 +120,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 TEMPLATE_DIRS = (TEMPLATE_DIR,)
 STATICFILES_DIRS = (STATIC_DIR,)
+
+
+LOGIN_URL = 'rango:login'
