@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rango.helper import MyRegistrationView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rango/', include('rango.urls')),
+    path('accounts/register/', MyRegistrationView.as_view(), name='registration_register'),
+    path('accounts/', include('registration.backends.simple.urls')),
 ]

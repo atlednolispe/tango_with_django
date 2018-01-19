@@ -1,4 +1,5 @@
 from datetime import datetime
+from registration.backends.simple.views import RegistrationView
 
 
 def visitor_cookie_handler(request):
@@ -22,3 +23,8 @@ def get_server_side_cookie(request, cookie, default_val=None):
     if not val:
         val = default_val
     return val
+
+
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, request):
+        return '/rango/'
