@@ -1,0 +1,23 @@
+{% if cats %}
+    {% for c in cats %}
+        {% if c == act_cat %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                    <strong>
+                        <a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a>
+                    </strong>
+                </a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                        <a href="{% url 'rango:show_category' c.slug %}">{{ c.name }}</a>
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <li> <strong>There are no category present.</strong></li>
+{% endif %}

@@ -7,3 +7,8 @@ register = template.Library()
 @register.inclusion_tag('rango/cats.html')
 def get_category_list(cat=None):
     return {'cats': Category.objects.all(), 'act_cat': cat}
+
+
+@register.inclusion_tag('rango/bootstrap_cats.html')
+def bootstrap_get_category_list(cat=None):
+    return {'cats': Category.objects.all(), 'act_cat': cat}

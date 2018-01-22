@@ -6,20 +6,18 @@
 {% endblock %}
 
 {% block body_block %}
-    <h1>Add a Page</h1>
-    <h2>{{ category }}</h2>
-    <div>
-        <form id="category_form" method="post" action="{% url 'rango:add_page' category.slug %}">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-            <input type="submit" name="submit" value="Create Page" />
-        </form>
-    </div>
+    <link href="{% static 'dist/css/signin.css' %}" rel="stylesheet">
+    <form class="form-signin" role="form" method="post" action=".">
+      {% csrf_token %}
+      <img class="mb-4 col-md" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">Add a Page to <a href="/rango/category/{{category.slug}}/">{{ category.name }}</a></h1>
+      <label for="inputTitle" class="sr-only">The title of the page:</label>
+      <input type="text" id="inputTitle" class="form-control" placeholder="Title" name="title" required autofocus>
+      <label for="inputURL" class="sr-only">The URL of the page:</label>
+      <input type="url" id="inputURL" class="form-control" placeholder="URL" name="url" required>
+      {% for hidden in form.hidden_fields %}
+          {{ hidden }}
+      {% endfor %}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Add Page</button>
+    </form>
 {% endblock %}
